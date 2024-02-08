@@ -1,21 +1,35 @@
-import random
+katok = ["A", "B", "C", "D", "E"]
+
+def insert_data(position, friend):
+
+    if position <0 or position > len(katok):
+        print("error")
+        return
+
+    katok.append(None)
+    kLen = len(katok)
+
+    for i in range(kLen-1, position, -1) :
+        katok[i] = katok[i-1]
+        katok[i-1] = None
+
+    katok[position] = friend
 
 
-target_number = random.randint(1, 100)
-chance = 7
-print("1-100")
 
-while chance != 0 :
-    guess_number = int(input("Input guess number : "))
-    if guess_number == target_number :
-        print("Correct")
-        break
-    elif guess_number > target_number :
-        chance = chance - 1
-        print(f"lower. {chance} chance left")
-    else :
-        chance = chance - 1
-        print(f"higher. {chance} chance left")
+def delte_data(position):
 
-else :
-    print ("no more chance")
+    if position <0 or position > len(katok):
+        print("error")
+        return
+    kLen = len(katok)
+    katok[position] = None
+
+    for i in range (position+1, kLen) :
+        katok[i-1] = katok[i]
+        katok[i] = None
+
+    del(katok[kLen-1])
+insert_data(2, "LOVE")
+delte_data(3)
+print(katok)
