@@ -55,11 +55,12 @@ def check_bracket(expr : str) -> bool:
 	stack=list()
 	table = {')':'(', '}':'{', ']':'[', '>':'<',}
 	for char in expr:
-		if char not in table:
+		if char in table.values():
 			# push(char)
 			stack.append(char)
-		elif not stack or table[char] != stack.pop():
-			return False
+		elif char in table.keys():
+			if not stack or table[char] != stack.pop():
+				return False
 	return len(stack) == 0
 
 
