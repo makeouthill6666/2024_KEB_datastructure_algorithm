@@ -1,24 +1,14 @@
-graph = [
-    [0, 1, 1, 0, 0, 0], #문별
-    [1, 0, 0, 1, 0, 0], #솔라
-    [1, 0, 0, 1, 0 ,0], #휘인
-    [0, 1, 1, 0, 1, 1], #쯔위
-    [0, 0, 0, 1, 0 ,1], #선미
-    [0, 0, 0, 1, 1, 0], #화사
-]
+def decimal_to_octal(number:int) -> str:
+    """
+    decimal number to octal number
+    :param number: integer (base dec)
+    :return: string (base octal)
+    """
+    octal = ' '
+    while number > 0:
+        octal = str(number % 8) + octal
+        number = number // 8
+    return octal
 
-
-
-def dfs(g, v, visited):
-    visited[v] = True
-    print(chr(ord('A')+v), end=' ')
-    for i in range(len(graph)):
-        if graph[v][i] == True and not visited[i]:
-            dfs(g, i, visited)
-
-visited = [0 for _ in range(len(graph))]
-dfs(graph, 0, visited)
-#
-#
-# visited = [False] * len(graph)
-# dfs(graph, 0 , visited)
+n = int(input("Input decimal number : "))
+print(decimal_to_octal(n))
